@@ -1,5 +1,6 @@
 package victor.training.jpa.app;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -10,7 +11,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import victor.training.jpa.app.common.data.EntityRepositoryFactoryBean;
+import victor.training.jpa.app.common.EntityRepositoryFactoryBean;
 
 @SpringBootApplication
 @EnableJpaRepositories(repositoryFactoryBeanClass = EntityRepositoryFactoryBean.class)
@@ -18,25 +19,20 @@ import victor.training.jpa.app.common.data.EntityRepositoryFactoryBean;
 @EnableTransactionManagement/*(mode = AdviceMode.ASPECTJ)*/
 //-javaagent:spring-instrument.jar -javaagent:aspectjweaver.jar
 //@EnableLoadTimeWeaving(aspectjWeaving= EnableLoadTimeWeaving.AspectJWeaving.ENABLED)
+@Slf4j
 public class JpaApplication {
 
 	@Autowired
 	private DummyDataCreator dummyDataCreator;
-	@Autowired
-	private Playground playground;
 
 	@Autowired
 	private PlatformTransactionManager txm;
 
 	@EventListener
 	public void onApplicationEvent(ContextRefreshedEvent event) {
-		System.out.println(txm.getClass());
-		System.out.println("Application started. Running playground code...");
+		log.info("Transaction Manager: " + txm.getClass());
+		System.out.println("Application started...");
 		dummyDataCreator.persistDummyData();
-		System.out.println(" ========= FIRST TRANSACTION ========== ");
-		playground.firstTransaction();
-		System.out.println(" ========= SECOND TRANSACTION ========== ");
-		playground.secondTransaction();
 		System.out.println(" ========= END ========== ");
 	}
 	
