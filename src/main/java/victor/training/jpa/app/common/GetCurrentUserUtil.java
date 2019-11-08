@@ -1,7 +1,14 @@
 package victor.training.jpa.app.common;
 
+import java.util.Optional;
+
+import static java.util.Optional.ofNullable;
+
 public class GetCurrentUserUtil {
 
+	public static Optional<String> getCurrentUserOpt() {
+		return ofNullable(getCurrentUser());
+	}
 	public static String getCurrentUser() {
 //		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 //		if (authentication==null) {

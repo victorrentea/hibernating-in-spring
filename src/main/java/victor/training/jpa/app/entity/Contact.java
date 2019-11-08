@@ -7,16 +7,19 @@ import java.util.List;
 import javax.persistence.*;
 
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 
-import victor.training.jpa.app.common.MyTrackingEntityListener.Trackable;
+import victor.training.jpa.app.common.MyTrackingEntityListener.Traceable;
 
+@Slf4j
 @Data
 @Entity
-// TODO @EntityListeners( ...
-// TODO implements Trackable
-public class Contact implements Trackable {
+// TODO @EntityListeners( ... + implements Trackable
+// TODO LastModifiedBy
+public class Contact implements Traceable, ContactFirstAndLastName {
 	@Id
 	@GeneratedValue
 	private Long id;
@@ -31,6 +34,7 @@ public class Contact implements Trackable {
 	@LastModifiedDate // SOLUTION
 	private LocalDateTime lastModifiedDate;
 
+	@CreatedBy
 	@LastModifiedBy // SOLUTION
 	private String lastModifiedBy;
 
@@ -48,12 +52,29 @@ public class Contact implements Trackable {
 		return this;
 	}
 
+	public String getFullName() {
+		return firstName + " " + lastName;
+	}
+
+	@Override
+	public String toString() {
+		return "Contact{" +
+				"id=" + id +
+				", firstName='" + firstName + '\'' +
+				", lastName='" + lastName + '\'' +
+				", company='" + company + '\'' +
+				", phones=" + phones +
+				", lastModifiedDate=" + lastModifiedDate +
+				", lastModifiedBy='" + lastModifiedBy + '\'' +
+				'}';
+	}
+
 	//	@PrePersist
 //	@PreUpdate
 //	public void automaticUpdateTrackingColumns() {
-//		System.out.println("Before persist/update Subject");
+//		log.debug("Before persist/update Contact");
 //		lastModifiedDate = LocalDateTime.now();
-//		lastModifiedBy = MyUtil.getUserOnCurrentThread();
+//		lastModifiedBy = GetCurrentUserUtil.getCurrentUser();
 //	}
 }
 	

@@ -1,4 +1,4 @@
-package victor.training.jpa.app.web;
+package victor.training.jpa.app.web.dto;
 
 import victor.training.jpa.app.entity.Contact;
 

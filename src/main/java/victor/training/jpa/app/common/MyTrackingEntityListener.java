@@ -6,21 +6,22 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import victor.training.jpa.app.service.ChangeLogService;
 
 @Slf4j
 public class MyTrackingEntityListener {
-	public interface Trackable {
+	public interface Traceable {
 		void setLastModifiedBy(String username);
 		void setLastModifiedDate(LocalDateTime dateTime);
 	}
 	
 	@PreUpdate
     @PrePersist
-    public void setLastUpdate(Trackable trackable) {
-//		log.debug("Updating tracking columns of: {}", trackable);
-//		trackable.setLastModifiedDate(LocalDateTime.now());
-//		trackable.setLastModifiedBy(MyUtil.getUserOnCurrentThread());
+    public void setLastUpdate(Traceable traceable) {
+		log.debug("Updating tracking columns of: {}", traceable);
+		traceable.setLastModifiedDate(LocalDateTime.now());
+		traceable.setLastModifiedBy(GetCurrentUserUtil.getCurrentUser());
     }
 }

@@ -20,6 +20,7 @@ public class Phone {
 	private String value;
 	
 	@Enumerated(EnumType.STRING)
+	@Column(nullable = false)
 	private Type type;
 	
 	@ManyToOne
@@ -30,5 +31,14 @@ public class Phone {
 	public Phone(String value, Type type) {
 		this.value = value;
 		this.type = type;
+	}
+
+	@Override
+	public String toString() {
+		return "Phone{" +
+				"id=" + id +
+				", value='" + value + '\'' +
+				", type=" + type +
+				'}';
 	}
 }
