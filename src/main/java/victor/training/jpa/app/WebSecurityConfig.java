@@ -1,4 +1,4 @@
-//package ro.victor.training.jpa2;
+//package victor.training.jpa.app;
 //
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.context.annotation.Configuration;
@@ -6,6 +6,8 @@
 //import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 //import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 //import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+//import org.springframework.security.core.userdetails.User;
+//import org.springframework.security.core.userdetails.UserDetails;
 //
 //@Configuration
 //@EnableWebSecurity
@@ -23,15 +25,16 @@
 //                .and()
 //            .logout()
 //                .permitAll();
-//        
+//
 //    }
 //
 //    @Autowired
 //    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+//        UserDetails user = User.withDefaultPasswordEncoder().username("user").password("user").roles("USER").build();
+//        UserDetails test = User.withDefaultPasswordEncoder().username("test").password("test").roles("USER").build();
 //        auth
 //            .inMemoryAuthentication()
-//	            .withUser("user").password("").roles("USER").and()
-//                .withUser("test").password("").roles("USER")
+//	            .withUser(user).withUser(test)
 //                ;
 //    }
 //}

@@ -1,5 +1,6 @@
 package victor.training.jpa.app.common;
 
+
 import java.util.Optional;
 
 import static java.util.Optional.ofNullable;

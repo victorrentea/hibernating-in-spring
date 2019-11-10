@@ -42,10 +42,6 @@ public class JpaApplication {
 		System.out.println(" ========= END ========== ");
 	}
 
-	@Bean
-	public LocaleResolver localeResolver() {
-		return new AcceptHeaderLocaleResolver();
-	}
 
 	@Bean
 	public AuditorAware<String> auditorProvider() {

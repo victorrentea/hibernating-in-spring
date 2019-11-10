@@ -13,6 +13,7 @@ import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import victor.training.jpa.app.common.MyTrackingEntityListener.Traceable;
 
 @Slf4j
@@ -21,6 +22,7 @@ import victor.training.jpa.app.common.MyTrackingEntityListener.Traceable;
 @Entity
 // TODO @EntityListeners( ... + implements Trackable
 // TODO LastModifiedBy
+@EntityListeners(AuditingEntityListener.class)
 public class Contact implements Traceable {
 	@Id
 	@GeneratedValue
