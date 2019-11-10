@@ -1,12 +1,13 @@
 package victor.training.jpa.app.entity;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import javax.persistence.*;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.LastModifiedBy;
@@ -15,11 +16,12 @@ import org.springframework.data.annotation.LastModifiedDate;
 import victor.training.jpa.app.common.MyTrackingEntityListener.Traceable;
 
 @Slf4j
-@Data
+@Getter
+@Setter
 @Entity
 // TODO @EntityListeners( ... + implements Trackable
 // TODO LastModifiedBy
-public class Contact implements Traceable, ContactFirstAndLastName {
+public class Contact implements Traceable {
 	@Id
 	@GeneratedValue
 	private Long id;
@@ -28,8 +30,14 @@ public class Contact implements Traceable, ContactFirstAndLastName {
 	private String lastName;
 	private String company;
 
+	@ElementCollection(fetch = FetchType.EAGER)
+	private Set<Tag> tags = new HashSet<>();
+
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<Phone> phones = new ArrayList<>();
+	private Set<Address> addresses = new HashSet<>();
+
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	private Set<Phone> phones = new HashSet<>();
 
 	@LastModifiedDate // SOLUTION
 	private LocalDateTime lastModifiedDate;
@@ -40,10 +48,11 @@ public class Contact implements Traceable, ContactFirstAndLastName {
 
 	private Contact() { } // Hibernate
 
-	public Contact(String firstName, String lastName, String company) {
+	public Contact(String firstName, String lastName, String company, Tag... tags) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.company = company;
+		this.tags = new HashSet<>(Arrays.asList(tags));
 	}
 
 	public Contact addPhone(Phone phone) {
@@ -63,7 +72,7 @@ public class Contact implements Traceable, ContactFirstAndLastName {
 				", firstName='" + firstName + '\'' +
 				", lastName='" + lastName + '\'' +
 				", company='" + company + '\'' +
-				", phones=" + phones +
+//				", phones=" + phones +
 				", lastModifiedDate=" + lastModifiedDate +
 				", lastModifiedBy='" + lastModifiedBy + '\'' +
 				'}';

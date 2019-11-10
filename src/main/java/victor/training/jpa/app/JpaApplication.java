@@ -1,6 +1,7 @@
 package victor.training.jpa.app;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.tomcat.util.descriptor.LocalResolver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -13,6 +14,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import org.springframework.web.servlet.LocaleResolver;
+import org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver;
 import victor.training.jpa.app.common.EntityRepositoryFactoryBean;
 import victor.training.jpa.app.common.GetCurrentUserUtil;
 
@@ -38,7 +41,11 @@ public class JpaApplication {
 		dummyDataCreator.persistDummyData();
 		System.out.println(" ========= END ========== ");
 	}
-	
+
+	@Bean
+	public LocaleResolver localeResolver() {
+		return new AcceptHeaderLocaleResolver();
+	}
 
 	@Bean
 	public AuditorAware<String> auditorProvider() {

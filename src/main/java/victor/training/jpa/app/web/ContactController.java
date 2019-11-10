@@ -13,6 +13,7 @@ import victor.training.jpa.app.web.dto.ContactPhoneDto;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toList;
 
@@ -30,14 +31,21 @@ public class ContactController {
 	}
 
 
+	// TODO 1 only take out first and last name
+	// TODO 2 dynamic projections ,Class<?>)
+
 	@GetMapping("names")
 	public List<ContactFirstAndLastName> getAllNames() {
-		return contactRepo.findAllFirstAndLast();
+		List<ContactFirstAndLastName> list = contactRepo.findAll(ContactFirstAndLastName.class);
+		System.out.println(list);
+		System.out.println(list.get(0).getClass());
+		System.out.println(list.stream().map(ContactFirstAndLastName::getFirstName).collect(Collectors.joining()));
+		return list;
 	}
 
 	@GetMapping("{id}")
 	public ContactDetailsDto getDetails(@PathVariable long id) {
-		Optional<Contact> contact = contactRepo.findById(id);
+		Optional<Contact> contact = contactRepo.findWithPhones(id);
 		return new ContactDetailsDto(contact.get());
 	}
 

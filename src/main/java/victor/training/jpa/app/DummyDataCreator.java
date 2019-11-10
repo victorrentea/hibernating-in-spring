@@ -17,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import victor.training.jpa.app.entity.Contact;
 import victor.training.jpa.app.entity.Phone;
+import victor.training.jpa.app.entity.Tag;
 import victor.training.jpa.app.repo.ContactRepo;
 
 @Slf4j
@@ -29,10 +30,10 @@ public class DummyDataCreator {
 	public void persistDummyData() {
 		log.info("Inserting dummy data");
 		contactRepo.saveAll(asList(
-			new Contact("Bruce", "Almighty", "Heaven Inc.")
+			new Contact("Bruce", "Almighty", "Heaven Inc.", Tag.WORK)
 				.addPhone(new Phone("0800HEAVEN", Phone.Type.OFFICE))
 				.addPhone(new Phone("+777PRAYNOW", Phone.Type.WORK)),
-			new Contact("Adam", "First", "Eden Ltd.")
+			new Contact("Adam", "First", "Eden Ltd.", Tag.FAMILY)
 				.addPhone(new Phone("0Eden", Phone.Type.OFFICE))
 				.addPhone(new Phone("+4000000001", Phone.Type.PERSONAL))
 		));

@@ -1,5 +1,6 @@
 package victor.training.jpa.app.repo;
 
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.Query;
 
 import victor.training.jpa.app.common.EntityRepository;
@@ -7,6 +8,7 @@ import victor.training.jpa.app.entity.Contact;
 import victor.training.jpa.app.entity.ContactFirstAndLastName;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ContactRepo extends EntityRepository<Contact, Long>, ContactRepoCustom {
 
@@ -15,7 +17,11 @@ public interface ContactRepo extends EntityRepository<Contact, Long>, ContactRep
 
 	Contact findContactByFirstName(String firstName);
 
+	@Query("SELECT c FROM Contact c")
+	<T> List<T> findAll(Class<T> type);
 
-	@Query("FROM Contact")
-	List<ContactFirstAndLastName> findAllFirstAndLast();
+	@Query("SELECT c FROM Contact c WHERE c.id = ?1")
+	@EntityGraph(attributePaths = {"phones","addresses.streetName"})
+	Optional<Contact> findWithPhones(long contactId);
+
 }
