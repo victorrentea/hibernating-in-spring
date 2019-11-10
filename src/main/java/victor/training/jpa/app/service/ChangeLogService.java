@@ -3,7 +3,7 @@ package victor.training.jpa.app.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import victor.training.jpa.app.entity.ChangeLog;
-import victor.training.jpa.app.entity.ChangeLogRepo;
+import victor.training.jpa.app.repo.ChangeLogRepo;
 
 @RequiredArgsConstructor
 @Service

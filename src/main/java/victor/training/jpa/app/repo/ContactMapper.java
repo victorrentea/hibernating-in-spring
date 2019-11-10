@@ -18,9 +18,5 @@ import java.util.stream.Collectors;
 public class ContactMapper {
     private final MessageSource messageSource;
 
-    public String translateTags(Collection<Tag> tags) {
-        return tags.stream()
-                .map(key -> messageSource.getMessage("tag." + key, null, Locale.ENGLISH))
-                .collect(Collectors.joining());
-    }
+   // TODO translate all tags via messages.properties
 }

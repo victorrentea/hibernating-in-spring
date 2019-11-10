@@ -20,10 +20,9 @@ import victor.training.jpa.app.common.MyTrackingEntityListener.Traceable;
 @Getter
 @Setter
 @Entity
-// TODO @EntityListeners( ... + implements Trackable
-// TODO LastModifiedBy
-@EntityListeners(AuditingEntityListener.class)
-public class Contact implements Traceable {
+// TODO @EntityListeners( ... + implements Traceable
+// TODO LastModifiedBy + AuditingEntityListener.class
+public class Contact {
 	@Id
 	@GeneratedValue
 	private Long id;
@@ -41,11 +40,8 @@ public class Contact implements Traceable {
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<Phone> phones = new HashSet<>();
 
-	@LastModifiedDate // SOLUTION
 	private LocalDateTime lastModifiedDate;
 
-	@CreatedBy
-	@LastModifiedBy // SOLUTION
 	private String lastModifiedBy;
 
 	private Contact() { } // Hibernate
