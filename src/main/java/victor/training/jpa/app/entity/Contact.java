@@ -29,6 +29,7 @@ public class Contact {
 
 	private String firstName;
 	private String lastName;
+	@Column(length = 20)
 	private String company;
 
 	@ElementCollection(fetch = FetchType.EAGER)

@@ -1,0 +1,29 @@
+** Spring Data JPA Repos
+- update company + add Log
+- ++ Tx
+- crash the Tx with too long company name- how ?
+- addPhone + log
+- delete Contact + log
+
+** queries in SDJ
+- search by firstName
+- like
+- uppercase -> Query
+- full search (custom impl)
+- select new
+
+** getDetails
+- getById - @EntityGraph
+- findWithChildren - LEFT JOIN FETCH
+- NonNullApi + Optional
+
+** ContactFullName
+- interface
+- tags toString cu SpEL
+- tags traduse cu messages.properties
+
+** Auditare
+- in-entity @PreUpdate
+- Listener @PreUpdate + Traceable
+- @LastModifiedBy
+- Spring Security ON

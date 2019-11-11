@@ -14,12 +14,7 @@ import org.springframework.data.repository.core.support.RepositoryFactorySupport
 public class EntityRepositoryFactoryBean<R extends JpaRepository<T, ID>, T, ID extends Serializable>
     extends JpaRepositoryFactoryBean<R, T, ID> {
 	
-//    public EntityRepositoryFactoryBean(JpaEntityInformation jpaEntityInformation , EntityManager em) {
-//        super();
-//        setEntityManager(em);
-//    }
-//    
-	
+
     public EntityRepositoryFactoryBean(Class<? extends R> repositoryInterface) {
 		super(repositoryInterface);
 	}

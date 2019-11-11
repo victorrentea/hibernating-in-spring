@@ -1,5 +1,6 @@
 package victor.training.jpa.app;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.tomcat.util.descriptor.LocalResolver;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 import victor.training.jpa.app.common.EntityRepositoryFactoryBean;
 import victor.training.jpa.app.common.GetCurrentUserUtil;
 
@@ -26,13 +28,11 @@ import victor.training.jpa.app.common.GetCurrentUserUtil;
 //-javaagent:spring-instrument.jar -javaagent:aspectjweaver.jar
 //@EnableLoadTimeWeaving(aspectjWeaving= EnableLoadTimeWeaving.AspectJWeaving.ENABLED)
 @Slf4j
+@EnableSwagger2
+@RequiredArgsConstructor
 public class JpaApplication {
-
-	@Autowired
-	private DummyDataCreator dummyDataCreator;
-
-	@Autowired
-	private PlatformTransactionManager txm;
+	private final DummyDataCreator dummyDataCreator;
+	private final PlatformTransactionManager txm;
 
 	@EventListener
 	public void onApplicationEvent(ContextRefreshedEvent event) {
