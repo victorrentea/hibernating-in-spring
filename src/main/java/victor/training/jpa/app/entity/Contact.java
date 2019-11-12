@@ -20,6 +20,7 @@ import victor.training.jpa.app.common.MyTrackingEntityListener.Traceable;
 @Getter
 @Setter
 @Entity
+// TODO @PrePersist
 // TODO @EntityListeners( ... + implements Traceable
 // TODO LastModifiedBy + AuditingEntityListener.class
 public class Contact {
@@ -45,7 +46,7 @@ public class Contact {
 
 	private String lastModifiedBy;
 
-	private Contact() { } // Hibernate
+	protected Contact() { } // Hibernate
 
 	public Contact(String firstName, String lastName, String company, Tag... tags) {
 		this.firstName = firstName;
@@ -77,12 +78,5 @@ public class Contact {
 				'}';
 	}
 
-	//	@PrePersist
-//	@PreUpdate
-//	public void automaticUpdateTrackingColumns() {
-//		log.debug("Before persist/update Contact");
-//		lastModifiedDate = LocalDateTime.now();
-//		lastModifiedBy = GetCurrentUserUtil.getCurrentUser();
-//	}
 }
 	

@@ -9,7 +9,7 @@
 - search by firstName
 - like
 - uppercase -> Query
-- full search (custom impl)
+- full search (custom impl) -> searchJPQL
 - select new
 
 ** getDetails
@@ -19,8 +19,8 @@
 
 ** ContactFullName
 - interface
-- tags toString cu SpEL
-- tags traduse cu messages.properties
+- tags: toString cu SpEL @Value #{target.}  + @Query
+- tags: translate via messages.properties ${@bean
 
 ** Auditare
 - in-entity @PreUpdate

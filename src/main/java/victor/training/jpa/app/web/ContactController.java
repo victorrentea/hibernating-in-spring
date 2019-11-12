@@ -1,9 +1,9 @@
 package victor.training.jpa.app.web;
 
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.lang3.NotImplementedException;
 import org.springframework.web.bind.annotation.*;
 import victor.training.jpa.app.entity.Contact;
-import victor.training.jpa.app.repo.ContactFirstAndLastName;
 import victor.training.jpa.app.repo.ContactRepo;
 import victor.training.jpa.app.service.ChangeLogService;
 import victor.training.jpa.app.service.ContactService;
@@ -12,8 +12,6 @@ import victor.training.jpa.app.web.dto.ContactDto;
 import victor.training.jpa.app.web.dto.ContactPhoneDto;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toList;
 
@@ -32,20 +30,13 @@ public class ContactController {
 
 	@GetMapping("byFirst/{firstName}")
 	public List<ContactDto> byFirstName(@PathVariable String firstName) {
-		return contactRepo.findContactByFirstNameIsLike(firstName).stream().map(ContactDto::new).collect(toList());
+		throw new NotImplementedException("todo");
 	}
 
-	// TODO 1 only take out first and last name
-	// TODO 2 dynamic projections ,Class<?>)
-
-	@GetMapping("names")
-	public List<ContactFirstAndLastName> getAllNames() {
-		return contactRepo.findAllNames();
-	}
 
 	@GetMapping("{id}")
 	public ContactDetailsDto getDetails(@PathVariable long id) {
-		Contact contact = contactRepo.getById(id);
+		Contact contact = contactRepo.getOne(id);
 		return new ContactDetailsDto(contact);
 	}
 
