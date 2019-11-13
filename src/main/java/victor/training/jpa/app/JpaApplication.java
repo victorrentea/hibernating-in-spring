@@ -22,11 +22,9 @@ import victor.training.jpa.app.common.EntityRepositoryFactoryBean;
 import victor.training.jpa.app.common.GetCurrentUserUtil;
 
 @SpringBootApplication
-@EnableJpaRepositories(repositoryFactoryBeanClass = EntityRepositoryFactoryBean.class)
+@EnableJpaRepositories // (repositoryFactoryBeanClass = EntityRepositoryFactoryBean.class)
 @EnableJpaAuditing
-@EnableTransactionManagement/*(mode = AdviceMode.ASPECTJ)*/
-//-javaagent:spring-instrument.jar -javaagent:aspectjweaver.jar
-//@EnableLoadTimeWeaving(aspectjWeaving= EnableLoadTimeWeaving.AspectJWeaving.ENABLED)
+@EnableTransactionManagement
 @Slf4j
 @EnableSwagger2
 @RequiredArgsConstructor

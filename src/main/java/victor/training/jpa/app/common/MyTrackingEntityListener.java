@@ -6,9 +6,6 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import victor.training.jpa.app.service.ChangeLogService;
 
 @Slf4j
 public class MyTrackingEntityListener {

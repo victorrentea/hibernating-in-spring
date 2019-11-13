@@ -72,7 +72,6 @@ public class Contact {
 				", firstName='" + firstName + '\'' +
 				", lastName='" + lastName + '\'' +
 				", company='" + company + '\'' +
-//				", phones=" + phones +
 				", lastModifiedDate=" + lastModifiedDate +
 				", lastModifiedBy='" + lastModifiedBy + '\'' +
 				'}';
