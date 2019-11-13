@@ -2,13 +2,6 @@ package victor.training.jpa.app.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import victor.training.jpa.app.entity.ChangeLog;
-import victor.training.jpa.app.entity.Contact;
-import victor.training.jpa.app.entity.Phone;
-import victor.training.jpa.app.repo.ChangeLogRepo;
-import victor.training.jpa.app.repo.ContactRepo;
-import victor.training.jpa.app.repo.PhoneRepo;
 
 @RequiredArgsConstructor
 @Service

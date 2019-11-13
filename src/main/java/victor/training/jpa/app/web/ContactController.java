@@ -18,8 +18,6 @@ public class ContactController {
 
 //  ==== also insert a ChangeLog ====
 
-	private final ContactService contactService;
-
 //	public void addPhone(long contactId, ContactPhoneDto phoneDto) {
 
 //	public void delete(long id) {
