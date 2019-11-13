@@ -14,14 +14,12 @@ public class ContactController {
 
 //	public List<ContactDto> byFirstName(String firstName) {
 
-//	public ContactDetailsDto getDetails(long id) {
+//	public ContactDetailsDto getDetails(long contactId) {
 
 //  ==== also insert a ChangeLog ====
 
 //	public void addPhone(long contactId, ContactPhoneDto phoneDto) {
 
-//	public void delete(long id) {
-
-//	public void setCompany(long id, String company) {
+//	public void setCompany(long contactId, String company) {
 
 }

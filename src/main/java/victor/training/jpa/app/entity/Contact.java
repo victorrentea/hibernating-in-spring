@@ -33,13 +33,13 @@ public class Contact {
 	@Column(length = 20)
 	private String company;
 
-	@ElementCollection(fetch = FetchType.EAGER)
+	@ElementCollection
 	private Set<Tag> tags = new HashSet<>();
 
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<Address> addresses = new HashSet<>();
 
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "contact")
 	private Set<Phone> phones = new HashSet<>();
 
 	private LocalDateTime lastModifiedDate;
