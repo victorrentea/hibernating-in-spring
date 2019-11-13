@@ -15,7 +15,8 @@ public class Phone {
 	@Id
 	@GeneratedValue
 	private Long id;
-	
+
+	@Column(length = 20)
 	private String value;
 	
 	@Enumerated(EnumType.STRING)

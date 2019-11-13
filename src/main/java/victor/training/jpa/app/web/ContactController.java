@@ -1,8 +1,9 @@
 package victor.training.jpa.app.web;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import victor.training.jpa.app.service.ContactService;
+import victor.training.jpa.app.web.dto.ContactPhoneDto;
 
 @RequiredArgsConstructor
 @RestController
@@ -17,7 +18,9 @@ public class ContactController {
 
 //  ==== also insert a ChangeLog ====
 
-//	public void addPhone(long id, ContactPhoneDto phoneDto) {
+	private final ContactService contactService;
+
+//	public void addPhone(long contactId, ContactPhoneDto phoneDto) {
 
 //	public void delete(long id) {
 
