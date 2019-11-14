@@ -11,6 +11,13 @@ public class ContactDto {
     public ContactDto() {
     }
 
+    public ContactDto(Long id, String firstName, String lastName, String company) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.company = company;
+    }
+
     public ContactDto(Contact contact) {
         this.id = contact.getId();
         this.firstName = contact.getFirstName();

@@ -1,6 +1,9 @@
 package victor.training.jpa.app.common;
 
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+
 import java.util.Optional;
 
 import static java.util.Optional.ofNullable;
@@ -11,12 +14,12 @@ public class GetCurrentUserUtil {
 		return ofNullable(getCurrentUser());
 	}
 	public static String getCurrentUser() {
-//		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//		if (authentication==null) {
-//			return "sys"; // at start-up, there is no user logged in
-//		} else {
-//			return authentication.getName();
-//		}
-		 return "user1"; // FIXME: hard-coded
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		if (authentication==null) {
+			return "sys"; // at start-up, there is no user logged in
+		} else {
+			return authentication.getName();
+		}
+//		 return "user1"; // FIXME: hard-coded
 	}
 }

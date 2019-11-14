@@ -14,6 +14,7 @@ import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import victor.training.jpa.app.common.GetCurrentUserUtil;
 import victor.training.jpa.app.common.MyTrackingEntityListener.Traceable;
 
 @Slf4j
@@ -23,6 +24,7 @@ import victor.training.jpa.app.common.MyTrackingEntityListener.Traceable;
 // TODO @PrePersist
 // TODO @EntityListeners( ... + implements Traceable
 // TODO LastModifiedBy + AuditingEntityListener.class
+@EntityListeners(AuditingEntityListener.class)
 public class Contact {
 	@Id
 	@GeneratedValue
@@ -42,9 +44,18 @@ public class Contact {
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "contact")
 	private Set<Phone> phones = new HashSet<>();
 
+	@LastModifiedDate
 	private LocalDateTime lastModifiedDate;
 
+	@LastModifiedBy
 	private String lastModifiedBy;
+
+//	@PreUpdate
+//	@PrePersist
+//	public void setTrackingInfo() {
+//		lastModifiedDate = LocalDateTime.now();
+//		lastModifiedBy = GetCurrentUserUtil.getCurrentUser();
+//	}
 
 	protected Contact() { } // Hibernate
 

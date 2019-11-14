@@ -1,6 +1,7 @@
 package victor.training.jpa.app.web.dto;
 
 import victor.training.jpa.app.entity.Contact;
+import victor.training.jpa.app.entity.Phone;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +21,12 @@ public class ContactDetailsDto {
         this.firstName = contact.getFirstName();
         this.lastName = contact.getLastName();
         this.company = contact.getCompany();
-        this.phones = contact.getPhones().stream().map(ContactPhoneDto::new).collect(toList());
+        List<ContactPhoneDto> list = new ArrayList<>();
+        System.out.println("I am converting the phones now");
+        for (Phone phone : contact.getPhones()) {
+            ContactPhoneDto contactPhoneDto = new ContactPhoneDto(phone);
+            list.add(contactPhoneDto);
+        }
+        this.phones = list;
     }
 }
