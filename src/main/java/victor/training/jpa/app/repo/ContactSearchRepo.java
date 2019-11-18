@@ -5,6 +5,6 @@ import victor.training.jpa.app.web.dto.ContactSearchCriteria;
 
 import java.util.List;
 
-public interface ContactRepoCustom {
+public interface ContactSearchRepo {
     List<ContactDto> search(ContactSearchCriteria criteria);
 }
