@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 @RequiredArgsConstructor
-public class ContactSearchRepoImpl implements ContactSearchRepo {
+class ContactSearchRepoImpl implements ContactSearchRepo {
     private final EntityManager em;
     @Override
     public List<ContactDto> search(ContactSearchCriteria criteria) {
